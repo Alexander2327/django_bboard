@@ -141,7 +141,7 @@ AUTH_USER_MODEL = 'main.AdvUser'
 
 EMAIL_PORT = 1025
 
-MEDIA_ROOT = path.join(BASE_DIR, 'madia')
+MEDIA_ROOT = path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 THUMBNAIL_ALIASES = {
