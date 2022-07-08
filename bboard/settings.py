@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 from os import getenv, path
 
@@ -29,7 +29,7 @@ SECRET_KEY = getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'bboard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bboard',
-        'HOST': '127.0.0.1',
+        'NAME': os.environ.get('POSTGRES_NAME'),
+        'HOST': 'db',
         'PORT': '5432',
-        'PASSWORD': getenv('PASSWORD'),
-        'USER': getenv('USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'USER': os.environ.get('POSTGRES_USER'),
     }
 }
 
