@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-from os import getenv
+from os import getenv, path
 
 from dotenv import load_dotenv
 
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
 
     'bootstrap4',
+    'django_cleanup',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.context_processors.main_context_processor',
             ],
         },
     },
@@ -137,3 +140,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'main.AdvUser'
 
 EMAIL_PORT = 1025
+
+MEDIA_ROOT = path.join(BASE_DIR, 'madia')
+MEDIA_URL = '/media/'
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'default': {
+            'size': (96, 96),
+            'crop': 'scale',
+        },
+    },
+}
+THUMBNAIL_BASEDIR = 'thumbnails'
